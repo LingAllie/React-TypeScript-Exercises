@@ -1,0 +1,85 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  background-color: #f5f5f5; 
+}
+
+form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: left;
+}
+
+form>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+form>div>p {
+  flex: 1;
+}
+
+form>div>input {
+  flex: 3;
+}
+
+input[type="text"], input[type="email"], input[type="number"] {
+  width: 94%;
+  padding: 8px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Submitted info section - initially hidden */
+.submitted-info {
+  position: absolute;
+  margin-top: 20px;
+  padding: 15px;
+  background-image: linear-gradient(to bottom, white, lightgreen, white);
+  border-radius: 4px;
+  border: 1px solid #d3d3d3;
+}
+
+.submitted-info p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.form-hidden {
+  opacity: 0;
+  pointer-events: none; 
+}
+
+.radiobuttons {
+  display: flex;
+  gap: 13px;
+}
+
+.checkboxes {
+  display: flex;
+  gap: 29px;
+}
