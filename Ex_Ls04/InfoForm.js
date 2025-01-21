@@ -9,12 +9,7 @@ class InfoForm extends React.Component {
       gender: "Male",
       email: "",
       address: "",
-      skill: "", 
-      submitFullname: "",
-      submitGender: "",
-      submitEmail: "",
-      submitAddress: "",
-      submitSkill: "",
+      skill: "",
       submitted: false,
     };
   }
@@ -22,7 +17,7 @@ class InfoForm extends React.Component {
   handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-  
+
     if (name === "skill") {
       this.setState((prevState) => {
         let skillList = prevState.skill ? prevState.skill.split(", ") : []; // Split previous skills into an array
@@ -44,139 +39,154 @@ class InfoForm extends React.Component {
       this.setState({ [name]: value });
     }
   };
-  
 
   handleSubmit = (event) => {
-    this.setState({
-      submitFullname: this.state.fullname,
-      submitGender: this.state.gender,
-      submitEmail: this.state.email,
-      submitAddress: this.state.address,
-      submitSkill: this.state.skill,
-      submitted: true,
-    });
+    this.setState({ submitted: true });
     event.preventDefault();
+  };
+
+  handleReturn = () => {
+    this.setState({
+      fullname: "",
+      gender: "Male",
+      email: "",
+      address: "",
+      skill: "",
+      submitted: false,
+    });
   };
 
   render() {
     return (
       <div className="container">
-        <form
-          onSubmit={this.handleSubmit}
-          className={this.state.submitted ? "form-hidden" : ""}
-        >
+        <form onSubmit={this.handleSubmit}>
           <h3>
             <center>Register User Form</center>
           </h3>
           <div>
             <p>FullName: </p>
-            <input
-              type="text"
-              name="fullname"
-              value={this.state.fullname}
-              onChange={this.handleChange}
-            />
+            {this.state.submitted ? (
+              <p>{this.state.fullname}</p>
+            ) : (
+              <input
+                type="text"
+                name="fullname"
+                value={this.state.fullname}
+                onChange={this.handleChange}
+              />
+            )}
           </div>
           <div>
             <p>Gender: </p>
-            <div className="radiobuttons">
-              <div>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="Male"
-                  onChange={this.handleChange}
-                  checked={this.state.gender === "Male"}
-                />
-                <span>Male</span>
+            {this.state.submitted ? (
+              <p>{this.state.gender}</p>
+            ) : (
+              <div className="radiobuttons">
+                <div>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="Male"
+                    onChange={this.handleChange}
+                    checked={this.state.gender === "Male"}
+                  />
+                  <span>Male</span>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="Female"
+                    onChange={this.handleChange}
+                    checked={this.state.gender === "Female"}
+                  />
+                  <span>Female</span>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="Other"
+                    onChange={this.handleChange}
+                    checked={this.state.gender === "Other"}
+                  />
+                  <span>Other</span>
+                </div>
               </div>
-              <div>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="Female"
-                  onChange={this.handleChange}
-                  checked={this.state.gender === "Female"}
-                />
-                <span>Female</span>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="Other"
-                  onChange={this.handleChange}
-                  checked={this.state.gender === "Other"}
-                />
-                <span>Other</span>
-              </div>
-            </div>
+            )}
           </div>
           <div>
             <p>Email: </p>
-            <input
-              type="email"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
+            {this.state.submitted ? (
+              <p>{this.state.email}</p>
+            ) : (
+              <input
+                type="email"
+                name="email"
+                value={this.state.email}
+                onChange={this.handleChange}
+              />
+            )}
           </div>
           <div>
             <p>Address: </p>
-            <input
-              type="text"
-              name="address"
-              value={this.state.address}
-              onChange={this.handleChange}
-            />
+            {this.state.submitted ? (
+              <p>{this.state.address}</p>
+            ) : (
+              <textarea
+                name="address"
+                value={this.state.address}
+                onChange={this.handleChange}
+              />
+            )}
           </div>
           <div>
             <p>Skill: </p>
-            <div className="checkboxes">
-              <div>
-                <input
-                  type="checkbox"
-                  name="skill"
-                  value="Java"
-                  onChange={this.handleChange}
-                  checked={this.state.skill.includes("Java")}
-                />
-                <span>Java</span>
+            {this.state.submitted ? (
+              <p>{this.state.skill}</p>
+            ) : (
+              <div className="checkboxes">
+                <div>
+                  <input
+                    type="checkbox"
+                    name="skill"
+                    value="Java"
+                    onChange={this.handleChange}
+                    checked={this.state.skill.includes("Java")}
+                  />
+                  <span>Java</span>
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    name="skill"
+                    value="SQL"
+                    onChange={this.handleChange}
+                    checked={this.state.skill.includes("SQL")}
+                  />
+                  <span>SQL</span>
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    name="skill"
+                    value="HTML"
+                    onChange={this.handleChange}
+                    checked={this.state.skill.includes("HTML")}
+                  />
+                  <span>HTML</span>
+                </div>
               </div>
-              <div>
-                <input
-                  type="checkbox"
-                  name="skill"
-                  value="SQL"
-                  onChange={this.handleChange}
-                  checked={this.state.skill.includes("SQL")}
-                />
-                <span>SQL</span>
-              </div>
-              <div>
-                <input
-                  type="checkbox"
-                  name="skill"
-                  value="HTML"
-                  onChange={this.handleChange}
-                  checked={this.state.skill.includes("HTML")}
-                />
-                <span>HTML</span>
-              </div>
-            </div>
+            )}
           </div>
-          <input type="submit" value="Register" />
+          {!this.state.submitted ? (
+            <input type="submit" value="Register" />
+          ) : (
+            <button type="button" onClick={this.handleReturn}>
+              Return
+            </button>
+          )}
         </form>
-
-        {this.state.submitted && (
-          <div className="submitted-info">
-            <p>FullName: {this.state.submitFullname}</p>
-            <p>Gender: {this.state.submitGender}</p>
-            <p>Email: {this.state.submitEmail}</p>
-            <p>Address: {this.state.submitAddress}</p>
-            <p>Skill: {this.state.submitSkill}</p>
-          </div>
-        )}
       </div>
     );
   }
